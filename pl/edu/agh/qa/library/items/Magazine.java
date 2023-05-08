@@ -8,6 +8,10 @@ public class Magazine extends Item {
         this.number = number;
     }
 
+    public boolean equal(Magazine obj){
+        return number.equals(obj.number) && title.equals(obj.title);
+    }
+
     public String print() {
         return title + ";" + number + ";" + allElements + ";" + availableItems;
     };

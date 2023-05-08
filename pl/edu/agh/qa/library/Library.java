@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+
 public class Library {
 
     List<User> userList = new ArrayList<>();
@@ -15,14 +16,29 @@ public class Library {
 
 
     public void addItemToLibrary(Item... items) {
-        for(Item item : items){
-            if(itemList.contains(item)) {
-                itemList.get(itemList.indexOf(item)).availableItems += 1;
-                itemList.get(itemList.indexOf(item)).allElements += 1;
+        for(Item item : items) {
+            if(itemList.size() == 0){
+                itemList.add(new Book("",""));
+                itemList.add(new Magazine("",""));
             }
-            else{
+            boolean exist = false;
+            for (Item it : itemList) {
+                if (it instanceof Book && item instanceof Book) {
+                    if (((Book) item).equal((Book) it)) {
+                        it.availableItems += 1;
+                        it.allElements += 1;
+                        exist = true;
+                    }
+                } else if (it instanceof Magazine && item instanceof Magazine) {
+                    if (((Magazine) item).equal((Magazine) it)) {
+                        it.availableItems += 1;
+                        it.allElements += 1;
+                        exist = true;
+                    }
+                }
+            }
+            if(!exist)
                 itemList.add(item);
-            }
         }
     }
 

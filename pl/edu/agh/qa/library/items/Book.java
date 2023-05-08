@@ -8,6 +8,10 @@ public class Book extends Item {
         this.author = author;
     }
 
+    public boolean equal(Book obj){
+        return author.equals(obj.author) && title.equals(obj.title);
+    }
+
     public String print() {
         return title + ";" + author + ";" + allElements + ";" + availableItems;
     };
