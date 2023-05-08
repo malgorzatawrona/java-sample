@@ -11,4 +11,5 @@ public abstract class Item {
         this.availableItems = 1;
         this.allElements = 1;
     }
+
 }

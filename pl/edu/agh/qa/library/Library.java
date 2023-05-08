@@ -17,10 +17,6 @@ public class Library {
 
     public void addItemToLibrary(Item... items) {
         for(Item item : items) {
-            if(itemList.size() == 0){
-                itemList.add(new Book("",""));
-                itemList.add(new Magazine("",""));
-            }
             boolean exist = false;
             for (Item it : itemList) {
                 if (it instanceof Book && item instanceof Book) {
@@ -85,5 +81,13 @@ public class Library {
         for(User user : userList) {
             System.out.println(user.toString());
         }
+    }
+
+    public List<Item> getItemList() {
+        return itemList;
+    }
+
+    public List<User> getUserList() {
+        return userList;
     }
 }
