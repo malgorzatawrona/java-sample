@@ -1,7 +1,7 @@
 package pl.edu.agh.qa.library.items;
 
 public class Magazine extends Item {
-    String number;
+    public String number;
 
     public Magazine(String number, String title) {
         super(title);

@@ -4,9 +4,8 @@ public abstract class User {
     protected String firstname;
     protected String surname;
     protected String userType;
-    protected int userId;
+    public int userId;
     private static int actualId = 1567;
-
     public int limit = 0;
     public int alreadyBorrowed = 0;
 
@@ -17,14 +16,6 @@ public abstract class User {
         this.limit = limit;
         this.userId = actualId;
         actualId++;
-    }
-
-    public void setAlreadyBorrowed(int alreadyBorrowed) {
-        this.alreadyBorrowed = alreadyBorrowed;
-    }
-
-    public int getAlreadyBorrowed() {
-        return alreadyBorrowed;
     }
 
     @Override
