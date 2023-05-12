@@ -26,9 +26,7 @@ public class test {
         lib.addItemToLibrary(new Book("R. Ludlum","Tożsamość Bourne’a"), new Magazine("06-2005","test"));
         lib.addItemToLibrary(new Magazine("02-2022","nasz nowy dom"));
         lib.printListOfBooks();
-        System.out.println("**********************************");
         lib.printListOfMagazines();
-        System.out.println("///////////////////////////////////");
 
         List<User> userList = lib.getUserList();
         List<Item> itemList = lib.getItemList();
@@ -60,11 +58,10 @@ public class test {
 
         lib.rentItemToUser(itemList.get(3), userList.get(2));
 
-        lib.importItemsFromFile("C:\\Users\\Gosia i Szymon\\Desktop\\test\\test.txt");
+        lib.importItemsFromFile("test.txt");
         lib.printListOfBooks();
-        System.out.println("**********************************");
         lib.printListOfMagazines();
 
-        lib.exportUsersWithItemsToFile("C:\\Users\\Gosia i Szymon\\Desktop\\test\\test1.txt");
+        lib.exportUsersWithItemsToFile("test1.txt");
     }
 }

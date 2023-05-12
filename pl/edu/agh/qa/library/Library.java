@@ -10,13 +10,11 @@ import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.*;
 
-
 public class Library {
 
     List<User> userList = new ArrayList<>();
     List<Item> itemList = new ArrayList<>();
     List<RentStatus> rentList = new ArrayList<>();
-
 
     public void addItemToLibrary(Item... items) {
         for(Item item : items) {
@@ -26,11 +24,9 @@ public class Library {
         }
     }
 
-
     public void addUserToLibrary(User... users) {
         userList.addAll(Arrays.asList(users));
     }
-
 
     public boolean rentItemToUser(Item item, User user) {
         if(itemList.contains(item) && userList.contains(user)) {
@@ -46,7 +42,6 @@ public class Library {
         }
         return false;
     }
-
 
     public void importItemsFromFile(String csvFile) throws FileNotFoundException {
         File file = new File(csvFile);
@@ -64,10 +59,8 @@ public class Library {
                 this.addMultipleItemsToLibrary(lineAsArray);
             }
         }
-
         inputFile.close();
     }
-
 
     public void exportUsersWithItemsToFile(String csvFile) throws FileNotFoundException {
         PrintWriter outputFile = new PrintWriter(csvFile);
@@ -77,7 +70,6 @@ public class Library {
         outputFile.close();
     }
 
-
     public void printListOfMagazines() {
         for(Item item : itemList){
             if (item instanceof Magazine) {
@@ -85,7 +77,6 @@ public class Library {
             }
         }
     }
-
 
     public void printListOfBooks() {
         for(Item item : itemList){
@@ -95,23 +86,19 @@ public class Library {
         }
     }
 
-
     public void printListOfUsers() {
         for(User user : userList) {
             System.out.println(user.toString());
         }
     }
 
-
     public List<Item> getItemList() {
         return itemList;
     }
 
-
     public List<User> getUserList() {
         return userList;
     }
-
 
     public boolean checkIfItemExistInLibrary(Item item){
         for (Item itElement : itemList){
@@ -133,7 +120,6 @@ public class Library {
         return false;
     }
 
-
     public void addUserToList(User u, Item it){
         boolean userExist = false;
         for(RentStatus elem: rentList){
@@ -145,7 +131,6 @@ public class Library {
         if (!userExist){
             rentList.add(new RentStatus(u.userId, it));
         }}
-
 
     public boolean assignMultipleQuantityToItemList(Item it, String[] lineAsArray){
         if (it instanceof Book && Objects.equals(lineAsArray[3], "B")) {
@@ -164,7 +149,6 @@ public class Library {
         return false;
     }
 
-
     public void addMultipleItemsToLibrary(String[] lineAsArray){
             if(Objects.equals(lineAsArray[3], "M"))
                 itemList.add(new Magazine(lineAsArray[1], lineAsArray[0]));
@@ -173,7 +157,6 @@ public class Library {
             itemList.get(itemList.size() -1).availableItems = Integer.parseInt(lineAsArray[2]);
             itemList.get(itemList.size() -1).allElements = Integer.parseInt(lineAsArray[2]);
     }
-
 
     public String saveLineToFile(RentStatus ren){
         StringBuilder listOfBooks = new StringBuilder("ID");
