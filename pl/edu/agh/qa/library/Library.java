@@ -29,14 +29,11 @@ public class Library {
     }
 
     public boolean rentItemToUser(Item item, User user) {
-        if(itemList.contains(item) && userList.contains(user)) {
-            Item it = itemList.get(itemList.indexOf(item));
-            User u = userList.get(userList.indexOf(user));
-
-            if (it.availableItems > 0  && u.alreadyBorrowed < u.limit) {
-                this.addUserToList(u, it);
-                it.availableItems--;
-                u.alreadyBorrowed++;
+        if(userList.contains(user) && itemList.contains(item)) {
+            if (item.availableItems > 0 && user.alreadyBorrowed < user.limit) {
+                this.addUserToList(user, item);
+                item.availableItems--;
+                user.alreadyBorrowed++;
                 return true;
             }
         }
@@ -89,6 +86,7 @@ public class Library {
     public void printListOfUsers() {
         for(User user : userList) {
             System.out.println(user.toString());
+
         }
     }
 
