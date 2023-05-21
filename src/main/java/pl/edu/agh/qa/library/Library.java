@@ -18,7 +18,7 @@ public class Library {
 
     public void addItemToLibrary(Item... items) {
         for(Item item : items) {
-            boolean itemExist = this.checkIfItemExistInLibrary(item);
+            boolean itemExist = this.ifItemExistInLibIncreaseQuantity(item);
             if(!itemExist)
                 itemList.add(item);
         }
@@ -29,7 +29,8 @@ public class Library {
     }
 
     public boolean rentItemToUser(Item item, User user) {
-        if(userList.contains(user) && itemList.contains(item)) {
+        boolean itemExist = this.isItemOnExistList(item);
+        if(userList.contains(user) && itemExist) {
             if (item.availableItems > 0 && user.alreadyBorrowed < user.limit) {
                 this.addUserToList(user, item);
                 item.availableItems--;
@@ -51,6 +52,8 @@ public class Library {
 
             for (Item it : itemList) {
                 itemExistOnList = this.assignMultipleQuantityToItemList(it, lineAsArray);
+                if(itemExistOnList)
+                    break;
             }
             if(!itemExistOnList){
                 this.addMultipleItemsToLibrary(lineAsArray);
@@ -58,6 +61,7 @@ public class Library {
         }
         inputFile.close();
     }
+
 
     public void exportUsersWithItemsToFile(String csvFile) throws FileNotFoundException {
         PrintWriter outputFile = new PrintWriter(csvFile);
@@ -98,7 +102,7 @@ public class Library {
         return userList;
     }
 
-    public boolean checkIfItemExistInLibrary(Item item){
+    public boolean ifItemExistInLibIncreaseQuantity(Item item){
         for (Item itElement : itemList){
             if (itElement instanceof Book && item instanceof Book) {
                 if (((Book) item).equal((Book) itElement)) {
@@ -111,6 +115,22 @@ public class Library {
                 if (((Magazine) item).equal((Magazine) itElement)) {
                     itElement.availableItems += 1;
                     itElement.allElements += 1;
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public boolean isItemOnExistList(Item i){
+        for (Item item : itemList){
+            if (item instanceof Book && i instanceof Book) {
+                if (((Book) item).equal((Book) i)) {
+                    return true;
+                }
+            }
+            else if (item instanceof Magazine && i instanceof Magazine) {
+                if (((Magazine) item).equal((Magazine) i)) {
                     return true;
                 }
             }
